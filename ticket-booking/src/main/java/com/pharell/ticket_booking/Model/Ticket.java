@@ -53,5 +53,6 @@ public class Ticket implements Serializable {
     private LocalDateTime lastModifiedDate;
 
     private LocalDateTime scanTime; // Pour garder une trace du dernier scan
+
 }
 

@@ -40,15 +40,15 @@ public class TicketServiceImpl implements TicketService {
     }
 
     // Vérifier si un ticket est valable
-    public boolean isTicketValid(Long Id)  {
+    public boolean isTicketValid(String qrCode)  {
         // Log : Début de la validation du ticket
-        logger.info("Validation du ticket avec ID : {}", Id);
+        logger.info("Validation du ticket avec ID : {}", qrCode);
 
         // Récupérer le ticket depuis la base de données
-        Ticket ticket = ticketRepository.findById(Id)
+        Ticket ticket = ticketRepository.findByQrCode(qrCode)
                 .orElseThrow(() -> {
                     // Log : Ticket non trouvé
-                    logger.error("Ticket non trouvé avec ID : {}", Id);
+                    logger.error("Ticket non trouvé avec ID : {}", qrCode);
                     return new RuntimeException("Ticket non trouvé");
                 });
 
@@ -63,8 +63,8 @@ public class TicketServiceImpl implements TicketService {
         return isValid;
     }
     // Utiliser un ticket (marquer comme utilisé)
-    public void useTicket(Long Id) {
-        Ticket ticket = ticketRepository.findById(Id).orElseThrow(() -> new RuntimeException("Ticket non trouvé"));
+    public void useTicket(String qrCode) {
+        Ticket ticket = ticketRepository.findByQrCode(qrCode).orElseThrow(() -> new RuntimeException("Ticket non trouvé" + qrCode));
         if (ticket.getStatus() != TicketStatus.VENDU) {
             throw new RuntimeException("Le ticket n'est pas valide pour utilisation");
         }

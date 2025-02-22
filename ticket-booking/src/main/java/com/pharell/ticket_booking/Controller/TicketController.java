@@ -38,9 +38,9 @@ public class TicketController {
         return ticketService.getAvailableTicketsForEvent(Id);
     }
 
-    @GetMapping("/validate/{id}")
-    public ResponseEntity<String> isTicketValid(@PathVariable Long id) {
-        boolean isValid = ticketService.isTicketValid(id);
+    @GetMapping("/validate/{qrCode}")
+    public ResponseEntity<String> isTicketValid(@PathVariable String qrCode) {
+        boolean isValid = ticketService.isTicketValid(qrCode);
         if (isValid) {
             return ResponseEntity.ok("Le ticket est valide.");
         } else {
@@ -49,9 +49,9 @@ public class TicketController {
     }
 
     // Utilise un ticket
-    @PostMapping("/use/{id}")
-    public ResponseEntity<String> useTicket(@PathVariable Long id) {
-        ticketService.useTicket(id);
+    @PostMapping("/use/{qrCode}")
+    public ResponseEntity<String> useTicket(@PathVariable String qrCode) {
+        ticketService.useTicket(qrCode);
         return ResponseEntity.ok("Ticket utilisé avec succès.");
     }
 }

@@ -24,8 +24,8 @@ public interface  TicketService {
     List<Ticket> getAvailableTicketsForEvent(Long Id) ;
 
     // Vérifier si un ticket est valable
-    boolean isTicketValid(Long Id) ;
+    boolean isTicketValid(String qrCode) ;
 
     // Utiliser un ticket (marquer comme utilisé)
-     void useTicket(Long Id);
+     void useTicket(String qrCode);
 }
