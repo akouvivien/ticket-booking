@@ -1,5 +1,6 @@
 package com.pharell.ticket_booking.Service;
 
+import com.pharell.ticket_booking.Dto.ticketDto;
 import com.pharell.ticket_booking.Model.Ticket;
 import com.pharell.ticket_booking.Repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +29,10 @@ public interface  TicketService {
 
     // Utiliser un ticket (marquer comme utilisé)
      void useTicket(String qrCode);
+
+    Ticket createTicket(ticketDto ticketDto);
+
+    Ticket updateTicket(Long ticketId, ticketDto ticketDto);
+
+    void deleteTicket(Long ticketId);
 }

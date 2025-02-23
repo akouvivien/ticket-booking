@@ -20,11 +20,12 @@ public class eventDto {
     private String name;
 
     private String location;
+
     private String spaceName;
 
     private LocalDate date;
-    private LocalTime time;
 
+    private LocalTime time;
 
     private  Long ticketId;
 }
